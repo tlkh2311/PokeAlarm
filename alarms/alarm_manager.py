@@ -20,7 +20,7 @@ class Alarm_Manager(Thread):
 		super(Alarm_Manager, self).__init__()
 		#Import settings from Alarms.json
 		filepath = config['ROOT_PATH']
-		with open(os.path.join(filepath, 'alarms.json')) as file:
+		with open(os.path.join(filepath, config['CONFIG_FILE'])) as file:
 			settings = json.load(file)
 			alarm_settings = settings["alarms"]
 			self.notify_list = make_notify_list(settings["pokemon"])
@@ -108,7 +108,7 @@ class Alarm_Manager(Thread):
         
 		#Check if the Pokemon is in the geofence
 		if 'GEOFENCE' in config:
-			if config['GEOFENCE'].contains(lat,lng) is not False:
+			if config['GEOFENCE'].contains(lat,lng) is not True:
 				log.info(name + " ignored: outside geofence")
 				return
 		#Trigger the notifcations

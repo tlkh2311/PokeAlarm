@@ -4,18 +4,19 @@ PokeAlarm is a third party extension for [PokemonGo-Map](https://github.com/Poke
 
 The following services are currently supported:
 * Pushbullet
-* Slacker
-* Twilio (SMS)
-* Telegram 
 * Pushover
+* Slacker
+* Telegram 
+* Twilio (SMS)
 
-If you are experiencing issues with the alarm or would like to see new features, please open a ticket here on github. 
+If you are experiencing issues with the alarm or would like to see new features, please open a ticket here on github. Make sure you use the supplied issue template, or else your issue will be ignored.
 
-If you are experiencing trouble with setup or other user difficulties, please see the reddit thread.
+## Upcoming Features
+
+PokeAlarm is still under development. However, as I'm sure many have noticed, updates have slowed down. Between school, work, and a few other big life events quickly approching, my time to work on this project has taken a drastic dive. However, I still plan to add updates and support when I can. If you are interested in helping out, please contact me via the discord channel.
  
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5W9ZTLMS5NB28&lc=US&item_name=PokeAlarm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)   
-_If you wish to leave me a tip or buy me a month of PushBullet Pro, please use the link above._  
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5W9ZTLMS5NB28&lc=US&item_name=PokeAlarm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)    
 
 ## Common Problems
 
@@ -40,7 +41,7 @@ This is a problem with the PokemonGo-Map sending an object with UTC time listed 
 
 3. Run pip to install requirements `pip install -r requirements.txt`
 
-4. Copy alarms.json.default and rename it to alarms.json. Edit the file (Windows Users: NOT with notepad) with your configuration settings. Make sure to change the pokemon you want to be alerted to "True". Each alarm configuration will be added to the wiki shortly. All the fields are required except for the 'name' field - it can be left blank or not included in the config at all. You can also add multple of the same alarm type.
+4. Copy alarms.json.default and rename it to alarms.json. Edit the file (Windows Users: NOT with notepad) with your configuration settings. Make sure to change the pokemon you want to be alerted to "True". Each alarm configuration will be added to the wiki shortly. All the fields are required except for the 'name' field - it can be left blank or not included in the config at all. You can also add multple of the same alarm type.  You can specify a different configuration file with `-cn <config_file.json>`.
 
 5. Start the webhook server with `python runwebhook.py`. You should receive a notification if your alarm is set up correctly. You can specify a host and port with `-H HOST -P PORT`. The default is a host of 127.0.0.1 and port of 4000. This is the port that the webhook will listen on. The port number MUST be different to what you run your PokemonGo-Map server on!
 
