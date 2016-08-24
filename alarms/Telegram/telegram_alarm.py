@@ -22,7 +22,7 @@ class Telegram_Alarm(Alarm):
 		self.title = settings.get('title', "A wild <pkmn> has appeared!")
 		self.body = settings.get('body', "<gmaps> \n Available until <24h_time> (<time_left>).")
 		log.info("Telegram Alarm intialized.")
-		self.client.sendMessage(self.chat_id, 'PokeAlarm activated! We will alert this chat about pokemon.')
+		#self.client.sendMessage(self.chat_id, 'PokeAlarm activated! We will alert this chat about pokemon.')
 	
 	#(Re)establishes Telegram connection
 	def connect(self):
