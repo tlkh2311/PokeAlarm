@@ -120,7 +120,7 @@ class Telegram_Alarm(Alarm):
 		else:
 			args = {
 				'chat_id': alert['chat_id'],
-				'text': '<b>' + replace(alert['title'], info) + '</b> \n' + replace(alert['body'], info),
+				'text': '' + replace(alert['title'], info) + '\n' + replace(alert['body'], info),
 				'parse_mode': 'HTML',
 				'disable_web_page_preview': 'False',
 				'disable_notification': 'False'
