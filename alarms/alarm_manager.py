@@ -98,6 +98,8 @@ class Alarm_Manager(Thread):
 						self.queue.task_done()
 					finally:
 						self.lock.release()
+					if 'may_extend' not in data['message']:
+						data['message']['may_extend'] = False
 					if data['type'] == 'pokemon' :
 						log.debug("Request processing for Pokemon #%s" % data['message']['pokemon_id'])
 						self.trigger_pokemon(data['message'])
@@ -122,12 +124,12 @@ class Alarm_Manager(Thread):
 	#Send a notification to alarms about a found pokemon
 	def trigger_pokemon(self, pkmn):
 		#If already alerted, skip
-		if pkmn['encounter_id'] in self.pokemon:
+		if "{}{}".format(pkmn['encounter_id'], pkmn['may_extend']) in self.pokemon:
 			return
 			
 		#Mark the pokemon as seen along with exipre time
 		dissapear_time = datetime.utcfromtimestamp(pkmn['disappear_time']);
-		self.seen["{}{}".format(pkmn['encounter_id'], pkmn['may_extend'])] = dissapear_time
+		self.pokemon["{}{}".format(pkmn['encounter_id'], pkmn['may_extend'])] = dissapear_time
 		pkmn_id = pkmn['pokemon_id']
 		name = get_pkmn_name(pkmn_id)
 		
