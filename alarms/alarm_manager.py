@@ -1,3 +1,4 @@
+# coding: utf8
 #Setup Logging
 import logging
 log = logging.getLogger(__name__)
@@ -6,6 +7,7 @@ log = logging.getLogger(__name__)
 import os
 import json
 import time
+import base64
 from datetime import datetime
 from threading import Thread
 
@@ -68,7 +70,10 @@ class Alarm_Manager(Thread):
 						log.debug("Invalid pokemon format - ignoring.")
 						break
 					log.debug("Request processing for #%s" % data['message']['pokemon_id'])
-					if data['message']['encounter_id'] not in self.seen:
+					if 'may_extend' not in data['message']:
+						data['message']['may_extend'] = False
+					#if data['message']['encounter_id'] not in self.seen:
+					if "{}{}".format(data['message']['encounter_id'], data['message']['may_extend'])  not in self.seen:
 						self.trigger_pkmn(data['message'])
 					log.debug("Finished processing for #%s" % data['message']['pokemon_id'])
 				elif data['type'] == 'pokestop' : 
@@ -82,7 +87,8 @@ class Alarm_Manager(Thread):
 	def trigger_pkmn(self, pkmn):
 		#Mark the pokemon as seen along with exipre time
 		dissapear_time = datetime.utcfromtimestamp(pkmn['disappear_time']);
-		self.seen[pkmn['encounter_id']] = dissapear_time
+		#self.seen[pkmn['encounter_id']] = dissapear_time
+		self.seen["{}{}".format(pkmn['encounter_id'], pkmn['may_extend'])] = dissapear_time
 		pkmn_id = pkmn['pokemon_id']
 		name = get_pkmn_name(pkmn_id)
 		
@@ -111,6 +117,11 @@ class Alarm_Manager(Thread):
 			if config['GEOFENCE'].contains(lat,lng) is not True:
 				log.info(name + " ignored: outside geofence")
 				return
+		
+		if pkmn['may_extend']:
+			may_extend = u" #會加時"
+		else:
+			may_extend = ""
 		#Trigger the notifcations
 		log.info(name + " notication was triggered!")
 		timestamps = get_timestamps(dissapear_time)
@@ -124,10 +135,11 @@ class Alarm_Manager(Thread):
 			'lng' : "{}".format(lng),
 			'gmaps': get_gmaps_link(lat, lng),
 			'dist': "%dm" % dist,
-			'time_left': timestamps[0],
+			'time_left': timestamps[0] + may_extend,
 			'12h_time': timestamps[1],
 			'24h_time': timestamps[2],
-			'dir': get_dir(lat,lng)
+			'dir': get_dir(lat,lng),
+			'encounter_id': format(int(base64.b64decode( str( pkmn['encounter_id'] ) )), 'x')
 		}
 		
 		for alarm in self.alarms:
