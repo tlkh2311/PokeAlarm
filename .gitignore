@@ -1,3 +1,9 @@
 *.pyc
-alarms.json
-coords.txt
+coords*.txt
+config/config.ini
+nohup.out
+
+# ignore multiple configuration files and possible startup scripts
+/*.json
+/*.bat
+/*.sh
