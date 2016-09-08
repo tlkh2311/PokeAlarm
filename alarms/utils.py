@@ -360,13 +360,13 @@ def reverse_location(info):
 			log.error("No Google Maps API key provided - unable to reverse geocode.")
 			return {}
 	lat, lng = info['lat'], info['lng']
-	result = config['GMAPS_CLIENT'].reverse_geocode((lat,lng))[0]
+	result = config['GMAPS_CLIENT'].reverse_geocode((lat,lng),language='zh-TW')[0]
 	loc = {}
 	for item in result['address_components']:
 		for category in item['types']:
 			loc[category] = item['short_name']
 	details = {
-		'address': "%s %s" % (loc.get('street_number'), loc.get('route'),),
+		'address': "%s" % (result['formatted_address'],),
 		'postal': "%s" % (loc.get('postal_code')),
 		'neighborhood': loc.get('neighborhood'),
 		'sublocality': loc.get('sublocality'),
