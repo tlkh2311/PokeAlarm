@@ -198,6 +198,7 @@ class Alarm_Manager(Thread):
                 try:
                     pkinfo['iv'] = "%0.2f" % ((float(pkinfo['iv_a'])+float(pkinfo['iv_s'])+float(pkinfo['iv_d']))/45.0 * 100)
                 except:
+                    pkinfo['iv'] = "??"
                     pass
                 try:
                        pkinfo['move_1'] = get_move_name(pkmn.get('move_1', pkmn['pokemon_data'].get('move_1', 0)))
