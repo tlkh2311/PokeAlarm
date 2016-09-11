@@ -182,6 +182,42 @@ class Alarm_Manager(Thread):
 			'encounter_id': format(int(base64.b64decode( str( pkmn['encounter_id'] ) )), 'x')
 		}
 		pkmn_info = self.optional_arguments(pkmn_info)
+
+                try:
+                       pkinfo['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
+                except:
+                    pkinfo['iv_a'] = "0"
+                try:
+                       pkinfo['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
+                except:
+                    pkinfo['iv_s'] = "0"
+                try:
+                       pkinfo['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
+                except:
+                    pkinfo['iv_d'] = "0"
+                try:
+                    pkinfo['iv'] = "%0.2f" % ((float(pkinfo['iv_a'])+float(pkinfo['iv_s'])+float(pkinfo['iv_d']))/45.0 * 100)
+                except:
+                    pass
+                try:
+                       pkinfo['move_1'] = get_move_name(pkmn.get('move_1', pkmn['pokemon_data'].get('move_1', 0)))
+                except:
+                        pass
+                try:
+                       pkinfo['move_2'] = get_move_name(pkmn.get('move_2', pkmn['pokemon_data'].get('move_2', 0)))
+                except:
+                        pass
+                        
+
+                if pkinfo.get('move_1', None) is None or pkinfo.get('move_1', '') == '':
+                    pkinfo['move_1'] = '??'
+                    pkinfo['move_2'] = '??'
+                    pkinfo['iv_a'] = '??'
+                    pkinfo['iv_d'] = '??'
+                    pkinfo['iv_s'] = '??'
+                    pkinfo['iv'] = '??'
+
+		
 			
 		for alarm in self.alarms:
 			alarm.pokemon_alert(pkmn_info)

@@ -185,6 +185,12 @@ def make_gym_list(settings):
 #########################################################################
 
 ############################# INFO UTILITIES ############################
+def get_move_name(move_id):
+    if not hasattr(get_move_name, 'names'):
+        file_path = os.path.join( config['ROOT_PATH'], 'moves.json' )
+        with open(file_path, 'r') as f:
+            get_move_name.names = json.loads(f.read())
+    return get_move_name.names.get(str(move_id))
 	
 #Returns the id corresponding with the pokemon name
 def get_pkmn_id(pokemon_name):
