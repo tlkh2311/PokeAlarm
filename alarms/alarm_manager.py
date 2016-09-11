@@ -174,12 +174,13 @@ class Alarm_Manager(Thread):
 			'lat' : "{}".format(repr(lat)),
 			'lng' : "{}".format(repr(lng)),
 			'gmaps': get_gmaps_link(lat, lng),
-			'time_left': timestamps[0] + may_extend,
+			'time_left': timestamps[0],
 			'dist': "%d%s" % (dist, 'yd' if config['UNITS'] == 'imperial' else 'm'),
 			'12h_time': timestamps[1],
 			'24h_time': timestamps[2],
 			'dir': get_dir(lat,lng),
-			'encounter_id': format(int(base64.b64decode( str( pkmn['encounter_id'] ) )), 'x')
+			'encounter_id': format(int(base64.b64decode( str( pkmn['encounter_id'] ) )), 'x'),
+			'may_extend' : may_extend
 		}
 		pkmn_info = self.optional_arguments(pkmn_info)
 
