@@ -184,42 +184,42 @@ class Alarm_Manager(Thread):
 		pkmn_info = self.optional_arguments(pkmn_info)
 
                 try:
-                    pkinfo['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
-                    if pkinfo['iv_a'] is None: pkinfo['iv_a'] = "0"
+                    pkmn_info['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
+                    if pkmn_info['iv_a']  == 'None': pkmn_info['iv_a'] = "0"
                 except:
-                    pkinfo['iv_a'] = "0"
+                    pkmn_info['iv_a'] = "0"
                 try:
-                    pkinfo['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
-                    if pkinfo['iv_s'] is None: pkinfo['iv_s'] = "0"
+                    pkmn_info['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
+                    if pkmn_info['iv_s']  == 'None': pkmn_info['iv_s'] = "0"
                 except:
-                    pkinfo['iv_s'] = "0"
+                    pkmn_info['iv_s'] = "0"
                 try:
-                    pkinfo['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
-                    if pkinfo['iv_d'] is None: pkinfo['iv_d'] = "0"
+                    pkmn_info['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
+                    if pkmn_info['iv_d']  == 'None': pkmn_info['iv_d'] = "0"
                 except:
-                    pkinfo['iv_d'] = "0"
+                    pkmn_info['iv_d'] = "0"
                 try:
-                    pkinfo['iv'] = "%0.2f" % ((float(pkinfo['iv_a'])+float(pkinfo['iv_s'])+float(pkinfo['iv_d']))/45.0 * 100)
+                    pkmn_info['iv'] = "%0.2f" % ((float(pkmn_info['iv_a'])+float(pkmn_info['iv_s'])+float(pkmn_info['iv_d']))/45.0 * 100)
                 except:
-                    pkinfo['iv'] = "??"
+                    pkmn_info['iv'] = "??"
                     pass
                 try:
-                       pkinfo['move_1'] = get_move_name(pkmn.get('move_1', pkmn['pokemon_data'].get('move_1', 0)))
+                       pkmn_info['move_1'] = get_move_name(pkmn.get('move_1', pkmn['pokemon_data'].get('move_1', 0)))
                 except:
                         pass
                 try:
-                       pkinfo['move_2'] = get_move_name(pkmn.get('move_2', pkmn['pokemon_data'].get('move_2', 0)))
+                       pkmn_info['move_2'] = get_move_name(pkmn.get('move_2', pkmn['pokemon_data'].get('move_2', 0)))
                 except:
                         pass
                         
 
-                if pkinfo.get('move_1', None) is None or pkinfo.get('move_1', '') == '':
-                    pkinfo['move_1'] = '??'
-                    pkinfo['move_2'] = '??'
-                    pkinfo['iv_a'] = '??'
-                    pkinfo['iv_d'] = '??'
-                    pkinfo['iv_s'] = '??'
-                    pkinfo['iv'] = '??'
+                if pkmn_info.get('move_1', None) is None or pkmn_info.get('move_1', '') == '':
+                    pkmn_info['move_1'] = '??'
+                    pkmn_info['move_2'] = '??'
+                    pkmn_info['iv_a'] = '??'
+                    pkmn_info['iv_d'] = '??'
+                    pkmn_info['iv_s'] = '??'
+                    pkmn_info['iv'] = '??'
 
 		
 			
