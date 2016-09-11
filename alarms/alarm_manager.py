@@ -184,15 +184,18 @@ class Alarm_Manager(Thread):
 		pkmn_info = self.optional_arguments(pkmn_info)
 
                 try:
-                       pkinfo['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
+                    pkinfo['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
+                    if pkinfo['iv_a'] is None: pkinfo['iv_a'] = "0"
                 except:
                     pkinfo['iv_a'] = "0"
                 try:
-                       pkinfo['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
+                    pkinfo['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
+                    if pkinfo['iv_s'] is None: pkinfo['iv_s'] = "0"
                 except:
                     pkinfo['iv_s'] = "0"
                 try:
-                       pkinfo['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
+                    pkinfo['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
+                    if pkinfo['iv_d'] is None: pkinfo['iv_d'] = "0"
                 except:
                     pkinfo['iv_d'] = "0"
                 try:
