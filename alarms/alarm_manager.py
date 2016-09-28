@@ -184,17 +184,17 @@ class Alarm_Manager(Thread):
 		pkmn_info = self.optional_arguments(pkmn_info)
 
                 try:
-                    pkmn_info['iv_a'] = str(pkmn.get('attack',  pkmn['pokemon_data'].get('individual_attack', 0)))
+                    pkmn_info['iv_a'] = str(pkmn.get('attack',  pkmn.get('individual_attack', 0)))
                     if pkmn_info['iv_a']  == 'None': pkmn_info['iv_a'] = "0"
                 except:
                     pkmn_info['iv_a'] = "0"
                 try:
-                    pkmn_info['iv_s'] = str(pkmn.get('stamina', pkmn['pokemon_data'].get('individual_stamina', 0)))
+                    pkmn_info['iv_s'] = str(pkmn.get('stamina', pkmn.get('individual_stamina', 0)))
                     if pkmn_info['iv_s']  == 'None': pkmn_info['iv_s'] = "0"
                 except:
                     pkmn_info['iv_s'] = "0"
                 try:
-                    pkmn_info['iv_d'] = str(pkmn.get('defense', pkmn['pokemon_data'].get('individual_defense', 0)))
+                    pkmn_info['iv_d'] = str(pkmn.get('defense', pkmn.get('individual_defense', 0)))
                     if pkmn_info['iv_d']  == 'None': pkmn_info['iv_d'] = "0"
                 except:
                     pkmn_info['iv_d'] = "0"
@@ -204,11 +204,11 @@ class Alarm_Manager(Thread):
                     pkmn_info['iv'] = "??"
                     pass
                 try:
-                       pkmn_info['move_1'] = get_move_name(pkmn.get('move_1', pkmn['pokemon_data'].get('move_1', 0)))
+                       pkmn_info['move_1'] = get_move_name(pkmn.get('move_1', pkmn.get('move_1', 0)))
                 except:
                         pass
                 try:
-                       pkmn_info['move_2'] = get_move_name(pkmn.get('move_2', pkmn['pokemon_data'].get('move_2', 0)))
+                       pkmn_info['move_2'] = get_move_name(pkmn.get('move_2', pkmn.get('move_2', 0)))
                 except:
                         pass
                         
