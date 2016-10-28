@@ -11,3 +11,4 @@
 #geofence: 					# Specify a file of coordinates, limiting alerts to within this area
 #units: 					# Specify either metric or imperial
 #timelimit: 					# Minimum number of seconds remaining on a pokemon to notify
+#sp_url: 					# sp_url
