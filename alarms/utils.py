@@ -79,6 +79,7 @@ def set_config(root_path):
 	parser.add_argument('-gf', '--geofence', help='Specify a file of coordinates, limiting alerts to within this area')
 	parser.add_argument('-tl', '--timelimit', type=int, help='Minimum number of seconds remaining on a pokemon to notify', default=0)
 	parser.add_argument('-tz', '--timezone', help='Timezone used for notifications.  Ex: "America/Los_Angeles"')
+	parser.add_argument('-sp', '--sp_url', help='SP_URL')
 	
 	args = parser.parse_args()
 	
@@ -89,6 +90,7 @@ def set_config(root_path):
 	config['DEBUG'] = args.debug
 	config['UNITS'] = args.units
 	config['TIME_LIMIT'] = args.timelimit
+	config['SP_URL'] = args.sp_url
 	
 	if args.key:
 		config['API_KEY'] = key=args.key
